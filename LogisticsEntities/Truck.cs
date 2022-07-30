@@ -8,7 +8,7 @@ namespace LogisticsEntities
 {
     public class Truck
     {
-        public int truckID { get; set; }
+        public string truckID { get; set; }
         public int vendorID { get; set; }
         public int costPerKM { get; set; }
         public int assignedTripID { get; set; }

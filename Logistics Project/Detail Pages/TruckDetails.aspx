@@ -1,24 +1,20 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DriverDetails.aspx.cs" Inherits="Logistics_Project.Detail_Pages.WebForm1" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TruckDetails.aspx.cs" Inherits="Logistics_Project.Detail_Pages.TruckDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Driver Details</h1>
+
+     <h1>Truck Details</h1>
     <div class="container">
 
         <div class="form-group">
-            <asp:Label runat="server">Name</asp:Label>
+            <asp:Label runat="server">Truck No.</asp:Label>
             <asp:TextBox runat="server" ID="txtname" CssClass="form-control" TextMode="SingleLine" AutoPostBack="false"></asp:TextBox>
             <asp:RequiredFieldValidator ID="user" runat="server" ControlToValidate="txtname"
-                ErrorMessage="Please enter a user name!!" ForeColor="Red"></asp:RequiredFieldValidator>
+                ErrorMessage="Please enter a valid number!!" ForeColor="Red"></asp:RequiredFieldValidator>
 
         </div>
         <div class="form-group">
-            <asp:Label runat="server">Contact No.</asp:Label>
-            <asp:TextBox runat="server" ID="txtcontact" CssClass="form-control" AutoPostBack="false"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                ControlToValidate="txtcontact" ErrorMessage="Enter correct contact number of 10 digits!!" ForeColor="Red"
-                ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtcontact"
-                ErrorMessage="Please enter contact details!!" ForeColor="Red"></asp:RequiredFieldValidator>
+            <asp:Label runat="server">Choose Vendor </asp:Label>
+            <asp:DropDownList CssClass="form-control" ID="lstVendors" runat="server"></asp:DropDownList>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" InitialValue="Select Vendor" runat="server" ControlToValidate="lstVendors" ErrorMessage="Please choose vendor!!" ForeColor="Red"></asp:RequiredFieldValidator>
 
         </div>
         <div class="form-group">
@@ -36,7 +32,7 @@
         </div>
     </div>
 
-    <br/>
+        <br/>
     <asp:Label ID="lblstatus" runat="server" Text=""></asp:Label>
 
     <hr />

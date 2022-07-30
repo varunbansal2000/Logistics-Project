@@ -8,19 +8,19 @@ using LogisticsEntities;
 
 namespace LogisticsDataAccess
 {
-    public class TruckAccess
+    public class VendorAccess
     {
         SqlConnection Conn;
         SqlCommand Cmd;
 
-        public TruckAccess()
+        public VendorAccess()
         {
             Conn = new SqlConnection("Data Source=IN-8QVTJM3;Initial Catalog=LogisticsApp;Integrated Security=SSPI");
         }
 
-        public List<Truck> Get()
+        public List<Vendor> Get()
         {
-            List<Truck> list = new List<Truck>();
+            List<Vendor> list = new List<Vendor>();
             try
             {
 
@@ -34,7 +34,7 @@ namespace LogisticsDataAccess
                 // 3. Set the Command Type
                 Cmd.CommandType = System.Data.CommandType.Text;
                 // 4. Set the Command Text
-                Cmd.CommandText = "Select * from Trucks";
+                Cmd.CommandText = "Select * from Vendors";
                 // 5. Execute the Command
                 SqlDataReader Reader = Cmd.ExecuteReader();
                 // 6. Get Result by reading data from Reader object and put it in List<Department>
@@ -42,13 +42,14 @@ namespace LogisticsDataAccess
                 while (Reader.Read())
                 {
                     // 6.b. Put each Row Value into the Department object 
-                    list.Add(new Truck()
+                    list.Add(new Vendor()
                     {
-                        truckID = (Reader["truckID"]).ToString(),
+                        //vendorID = Convert.ToInt32(Reader["driverID"]),
                         vendorID = Convert.ToInt32(Reader["vendorID"]),
-                        //driverContact = Reader["driverContact"].ToString(),
-                        costPerKM = Convert.ToInt32(Reader["costPerKM"]),
-                        assignedTripID = Convert.ToInt32(Reader["assignedTripID"])
+                        vendorContact = Reader["vendorContact"].ToString(),
+                        vendorName= Reader["vendorName"].ToString()
+                        //costPerKM = Convert.ToInt32(Reader["costPerKM"]),
+                        //assignedTripID = Convert.ToInt32(Reader["assignedTripID"])
                     });
                 }
                 // 6.c. Close the Reader so that tthe Cursor will be closed
@@ -66,28 +67,26 @@ namespace LogisticsDataAccess
 
         }
 
-        public Truck Get(string id)
+        public Vendor Get(int id)
         {
-            Truck driver = null;
+            Vendor vendor = null;
             try
             {
                 Conn.Open();
                 Cmd = new SqlCommand();
                 Cmd.Connection = Conn;
                 Cmd.CommandType = System.Data.CommandType.Text;
-                Cmd.CommandText = $"Select * from Trucks where truckID={id}";
+                Cmd.CommandText = $"Select * from Vendors where vendorID={id}";
                 SqlDataReader Reader = Cmd.ExecuteReader();
                 //Cmd.CommandText = $"Select * from Department where DeptNo={id}";
                 //SqlDataReader Reader2 = Cmd.ExecuteReader();
                 while (Reader.Read())
                 {
-                    driver = new Truck()
+                    vendor = new Vendor()
                     {
-                        truckID = Reader["driverID"].ToString(),
                         vendorID = Convert.ToInt32(Reader["vendorID"]),
-                        //driverContact = Reader["driverContact"].ToString(),
-                        costPerKM = Convert.ToInt32(Reader["costPerKM"]),
-                        assignedTripID = Convert.ToInt32(Reader["assignedTripID"])
+                        vendorContact = Reader["vendorContact"].ToString(),
+                        vendorName = Reader["vendorName"].ToString()
                     };
                 }
                 Reader.Close();
@@ -100,10 +99,10 @@ namespace LogisticsDataAccess
             {
                 Conn.Close();
             }
-            return driver;
+            return vendor;
         }
 
-        public void Create(Truck entity)
+        public void Create(Vendor entity)
         {
             try
             {
@@ -111,7 +110,7 @@ namespace LogisticsDataAccess
                 Cmd = new SqlCommand();
                 Cmd.Connection = Conn;
                 Cmd.CommandType = System.Data.CommandType.Text;
-                Cmd.CommandText = $"Insert into Trucks Values('{entity.truckID}', {entity.vendorID}, {entity.assignedTripID}, {entity.costPerKM})";
+                Cmd.CommandText = $"Insert into Vendors Values('{entity.vendorName}', '{entity.vendorContact}')";
                 Cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

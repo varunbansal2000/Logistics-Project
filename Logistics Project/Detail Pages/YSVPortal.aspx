@@ -38,6 +38,8 @@
             <asp:GridView ID="GridDrivers" runat="server"></asp:GridView>
             <h3>Available Trucks</h3>
             <asp:GridView ID="GridTrucks" runat="server"></asp:GridView>
+            <h3>Summary</h3>
+            <asp:GridView ID="summary" runat="server"></asp:GridView>
         </div>
 
     </div>

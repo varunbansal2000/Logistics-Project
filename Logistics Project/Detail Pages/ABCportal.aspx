@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ABCportal.aspx.cs" Inherits="Logistics_Project.Detail_Pages.ABCportal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>New Trip Portal</h1>
+    <h1>New Trip Portal (30 RS per KM)</h1>
     <div class="container">
         <div class="form-group">
             <asp:Label runat="server">Choose Destination </asp:Label>

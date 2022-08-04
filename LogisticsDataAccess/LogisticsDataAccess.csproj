@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DestinationAccess.cs" />
+    <Compile Include="SummaryAccess.cs" />
     <Compile Include="TripAccess.cs" />
     <Compile Include="TruckAccess.cs" />
     <Compile Include="DriverAccess.cs" />

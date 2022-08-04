@@ -15,12 +15,15 @@ namespace Logistics_Project.Detail_Pages
         TripAccess tripAccess;
         DriverAccess driverAccess;
         TruckAccess truckAccess;
+        SummaryAccess summaryAccess;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             tripAccess = new TripAccess();
             driverAccess = new DriverAccess();
             truckAccess = new TruckAccess();
+            summaryAccess = new SummaryAccess();
+
             if (!IsPostBack)
             {
                 lstDriverName.Items.Add("Select Driver");
@@ -80,6 +83,9 @@ namespace Logistics_Project.Detail_Pages
 
                 GridTrucks.DataSource = truckAccess.GetFreeTrucks();
                 GridTrucks.DataBind();
+
+                summary.DataSource = summaryAccess.Get();
+                summary.DataBind();
             }
             catch (Exception ex)
             {

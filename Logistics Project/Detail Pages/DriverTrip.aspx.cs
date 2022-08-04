@@ -15,12 +15,14 @@ namespace Logistics_Project.Detail_Pages
         DriverAccess driverAccess;
         TripAccess tripAccess;
         TruckAccess truckAccess;
+        SummaryAccess summaryAccess;
         protected void Page_Load(object sender, EventArgs e)
         {
             destinationAccess = new DestinationAccess();
             driverAccess = new DriverAccess();
             tripAccess = new TripAccess();
             truckAccess = new TruckAccess();
+            summaryAccess = new SummaryAccess();
            
             if (!IsPostBack)
             {
@@ -91,17 +93,36 @@ namespace Logistics_Project.Detail_Pages
             int mcharges = Convert.ToInt32(txtMaintainece.Text);
             int extraCharges = Convert.ToInt32(txtExtra.Text);
             int driverID = Convert.ToInt32(lstname.SelectedValue);
-            Trip trip = tripAccess.GetOngoingTripusingDriverID(driverID).First();
-            
             try
             {
-               
+                Trip trip = tripAccess.GetOngoingTripusingDriverID(driverID).First();
+                Driver driver = driverAccess.Get(driverID);
+                Truck truck = truckAccess.Get(trip.truckID);
+                Destination destination = destinationAccess.Get(trip.destinationID);
+                int driverPerKM = driver.driverCharges;
+                int truckPerKM = truck.costPerKM;
+                int totalDistance = destination.distance + extraDis;
+                int driverCharges2 = totalDistance * driverPerKM;
+                int vendorCharges2 = totalDistance * truckPerKM;
+                int TotalextraCharges = toll + mcharges + extraCharges;
+                int fromABC2 = destination.distance * 30;
+                int PL = fromABC2 - driverCharges2 - vendorCharges2 - TotalextraCharges;
+           
                 tripAccess.UpdateCompleted(trip.tripID, toll, mcharges, extraCharges, extraDis, endDate);
                 Trip t = tripAccess.Get(trip.tripID);
                 driverAccess.changeStatus(t.driverID, 0);
                 truckAccess.changeStatus(t.truckID, 0);
                 Loader();
-
+                Summary summary = new Summary
+                {
+                    tripID = t.tripID,
+                    driverCharges = driverCharges2,
+                    vendorCharges = vendorCharges2,
+                    extraCharges = TotalextraCharges,
+                    profitLoss = PL,
+                    fromABC = fromABC2  
+                };
+                summaryAccess.create(summary);
             }
             catch(Exception ex)
             {

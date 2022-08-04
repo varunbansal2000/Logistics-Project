@@ -123,7 +123,7 @@ namespace LogisticsDataAccess
                 Cmd = new SqlCommand();
                 Cmd.Connection = Conn;
                 Cmd.CommandType = System.Data.CommandType.Text;
-                Cmd.CommandText = $"Select * from Trucks where truckID={id}";
+                Cmd.CommandText = $"Select * from Trucks where truckID='{id}'";
                 SqlDataReader Reader = Cmd.ExecuteReader();
                 //Cmd.CommandText = $"Select * from Department where DeptNo={id}";
                 //SqlDataReader Reader2 = Cmd.ExecuteReader();
@@ -131,7 +131,7 @@ namespace LogisticsDataAccess
                 {
                     driver = new Truck()
                     {
-                        truckID = Reader["driverID"].ToString(),
+                        truckID = Reader["truckID"].ToString(),
                         vendorID = Convert.ToInt32(Reader["vendorID"]),
                         //driverContact = Reader["driverContact"].ToString(),
                         costPerKM = Convert.ToInt32(Reader["costPerKM"]),

@@ -11,19 +11,22 @@ namespace Logistics_Project.Detail_Pages
 {
     public partial class DriverTrip : System.Web.UI.Page
     {
+        DestinationAccess destinationAccess;
         DriverAccess driverAccess;
         TripAccess tripAccess;
         TruckAccess truckAccess;
         protected void Page_Load(object sender, EventArgs e)
         {
+            destinationAccess = new DestinationAccess();
             driverAccess = new DriverAccess();
             tripAccess = new TripAccess();
             truckAccess = new TruckAccess();
-            if(!IsPostBack)
+           
+            if (!IsPostBack)
             {
                 lstname.Items.Add("Select your Details");
                 lstname.Items.FindByText("Select your Details").Selected = true;
-                lstname.Items.FindByText("Select your Details").Attributes.Add("disabled", "disabled");
+                //lstname.Items.FindByText("Select your Details").Attributes.Add("disabled", "disabled");
                 List<Driver> drives = driverAccess.Get();
                 foreach(Driver drive in drives)
                 {
@@ -31,6 +34,7 @@ namespace Logistics_Project.Detail_Pages
                     lstname.Items.FindByText(drive.driverName + " " + drive.driverID).Value = drive.driverID.ToString();
                 }
             }
+            lstname.Items.FindByText("Select your Details").Attributes.Add("disabled", "disabled");
 
         }
 
@@ -67,7 +71,11 @@ namespace Logistics_Project.Detail_Pages
             txtExtra.Text = String.Empty;
             txtMaintainece.Text = String.Empty;
             txtToll.Text = String.Empty;
-            
+            List<Destination> destinations = destinationAccess.Get();
+
+            DestTable.DataSource = destinations;
+            DestTable.DataBind();
+
             int driverID = Convert.ToInt32(lstname.SelectedValue);
             List<Trip> trips = tripAccess.GetOngoingTripusingDriverID(driverID);
             tripAssigned.DataSource = trips.Select(o => new

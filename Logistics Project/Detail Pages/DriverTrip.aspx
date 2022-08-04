@@ -66,6 +66,9 @@
         <asp:Label ID="lblstatus" runat="server" Text=""></asp:Label>
 
         <hr />
+
+        <asp:GridView ID="DestTable" runat="server"></asp:GridView>
+
     </div>
 
 

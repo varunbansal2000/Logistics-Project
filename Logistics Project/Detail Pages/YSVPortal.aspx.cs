@@ -101,6 +101,7 @@ namespace Logistics_Project.Detail_Pages
                 lstDriverName.Items.Remove(lstDriverName.SelectedItem);
                 lstTrucks.Items.Remove(lstTrucks.SelectedItem);
                 lstTripID.Items.Remove(lstTripID.SelectedItem);
+                Loader();
             } catch(Exception ex)
             {
                 lblstatus.Text = ex.Message;

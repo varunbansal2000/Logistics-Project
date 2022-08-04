@@ -10,9 +10,10 @@ namespace LogisticsEntities
     {
         public int tripID { get; set; }
 
-        public int vendorID { get; set; }
+        public string truckID { get; set; }
         public int driverID { get; set; }
 
+        public int destinationID { get; set; }
         public string startDate { get; set; }
 
         public string endDate { get; set; }

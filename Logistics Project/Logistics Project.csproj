@@ -113,9 +113,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Detail Pages\ABCportal.aspx" />
+    <Content Include="Detail Pages\DestinationDetails.aspx" />
     <Content Include="Detail Pages\DriverDetails.aspx" />
+    <Content Include="Detail Pages\DriverTrip.aspx" />
     <Content Include="Detail Pages\TruckDetails.aspx" />
     <Content Include="Detail Pages\VendorDetails.aspx" />
+    <Content Include="Detail Pages\YSVPortal.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -186,12 +190,33 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Detail Pages\ABCportal.aspx.cs">
+      <DependentUpon>ABCportal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detail Pages\ABCportal.aspx.designer.cs">
+      <DependentUpon>ABCportal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Detail Pages\DestinationDetails.aspx.cs">
+      <DependentUpon>DestinationDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detail Pages\DestinationDetails.aspx.designer.cs">
+      <DependentUpon>DestinationDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Detail Pages\DriverDetails.aspx.cs">
       <DependentUpon>DriverDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Detail Pages\DriverDetails.aspx.designer.cs">
       <DependentUpon>DriverDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Detail Pages\DriverTrip.aspx.cs">
+      <DependentUpon>DriverTrip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detail Pages\DriverTrip.aspx.designer.cs">
+      <DependentUpon>DriverTrip.aspx</DependentUpon>
     </Compile>
     <Compile Include="Detail Pages\TruckDetails.aspx.cs">
       <DependentUpon>TruckDetails.aspx</DependentUpon>
@@ -206,6 +231,13 @@
     </Compile>
     <Compile Include="Detail Pages\VendorDetails.aspx.designer.cs">
       <DependentUpon>VendorDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Detail Pages\YSVPortal.aspx.cs">
+      <DependentUpon>YSVPortal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detail Pages\YSVPortal.aspx.designer.cs">
+      <DependentUpon>YSVPortal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
